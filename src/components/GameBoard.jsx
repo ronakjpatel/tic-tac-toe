@@ -6,13 +6,15 @@ const initialGameBoard = [
   [null, null, null],
 ];
 
-const GameBoard = () => {
+const GameBoard = ({ onButtonPressed, playerSymbol }) => {
   const [gameBoard, setGameBoard] = useState(initialGameBoard);
   const handleSelectSquare = (rowIndex, colIndex) => {
     setGameBoard((prevGameBoard) => {
       const newGameBoard = [...prevGameBoard.map((row) => [...row])];
 
-      newGameBoard[rowIndex][colIndex] = "A";
+      newGameBoard[rowIndex][colIndex] = playerSymbol;
+
+      onButtonPressed();
 
       return newGameBoard;
     });
