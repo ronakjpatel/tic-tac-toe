@@ -11,15 +11,12 @@ const GameBoard = ({ onButtonPressed, turns }) => {
   let gameBoard = initialGameBoard;
 
   for (const turn of turns) {
-    console.log("INSEDE FOR EACH");
     const { square, playerSymbol } = turn;
-    console.log(turn);
+
     const { row, col } = square;
 
     gameBoard[row][col] = playerSymbol;
   }
-
-  console.log(gameBoard);
 
   return (
     <ol id="game-board">

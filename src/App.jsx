@@ -17,7 +17,6 @@ function App() {
       if (old_turns_list.length > 0 && old_turns_list[0].playerSymbol === "X") {
         currentPlayer = "O";
       }
-      console.log("Row INdex is ", rowIndex, " Col index is ", colIndex);
 
       const temp_turns = [
         {
@@ -47,7 +46,7 @@ function App() {
         </ol>
         <GameBoard onButtonPressed={changeActivePlayer} turns={gameTurns} />
       </div>
-      <Log />
+      <Log turns={gameTurns} />
     </main>
   );
 }
