@@ -6,19 +6,21 @@ const initialGameBoard = [
   [null, null, null],
 ];
 
-const GameBoard = ({ onButtonPressed, playerSymbol }) => {
-  const [gameBoard, setGameBoard] = useState(initialGameBoard);
-  const handleSelectSquare = (rowIndex, colIndex) => {
-    setGameBoard((prevGameBoard) => {
-      const newGameBoard = [...prevGameBoard.map((row) => [...row])];
+const GameBoard = ({ onButtonPressed, turns }) => {
+  //this is the computed value that we are deriving from the state present in App jsx file
+  let gameBoard = initialGameBoard;
 
-      newGameBoard[rowIndex][colIndex] = playerSymbol;
+  for (const turn of turns) {
+    console.log("INSEDE FOR EACH");
+    const { square, playerSymbol } = turn;
+    console.log(turn);
+    const { row, col } = square;
 
-      onButtonPressed();
+    gameBoard[row][col] = playerSymbol;
+  }
 
-      return newGameBoard;
-    });
-  };
+  console.log(gameBoard);
+
   return (
     <ol id="game-board">
       {gameBoard.map((eachRow, eachRowIndex) => (
@@ -26,9 +28,7 @@ const GameBoard = ({ onButtonPressed, playerSymbol }) => {
           {eachRow.map((eachElement, eachElementIndex) => (
             <li key={eachElementIndex}>
               <button
-                onClick={() =>
-                  handleSelectSquare(eachRowIndex, eachElementIndex)
-                }
+                onClick={() => onButtonPressed(eachRowIndex, eachElementIndex)}
               >
                 {eachElement}
               </button>
