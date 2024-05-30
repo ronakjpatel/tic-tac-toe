@@ -40,6 +40,8 @@ function App() {
     }
   }
 
+  const hasDraw = gameTurns.length === 9 && !winner;
+
   const changeActivePlayer = (rowIndex, colIndex) => {
     setActivePlayer((prevActivePlayer) =>
       prevActivePlayer === "X" ? "O" : "X"
@@ -77,7 +79,7 @@ function App() {
             isCurrentlyActive={activePlayer === "O"}
           />
         </ol>
-        {winner && <GameOver winner={winner} />}
+        {(winner || hasDraw) && <GameOver winner={winner} />}
         <GameBoard onButtonPressed={changeActivePlayer} board={gameBoard} />
       </div>
       <Log turns={gameTurns} />
